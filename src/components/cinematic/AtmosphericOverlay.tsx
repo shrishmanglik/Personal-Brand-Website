@@ -9,6 +9,9 @@ export default function AtmosphericOverlay() {
 
   return (
     <>
+      {/* Film grain — animated noise overlay */}
+      <div className="film-grain z-[33]" />
+
       {/* Constant subtle vignette */}
       <div
         className="fixed inset-0 z-[35] pointer-events-none"
@@ -25,7 +28,7 @@ export default function AtmosphericOverlay() {
         }}
       />
 
-      {/* Top cinematic letterbox bar (very subtle) */}
+      {/* Top cinematic letterbox bar */}
       <div
         className="fixed top-0 left-0 right-0 z-[36] pointer-events-none h-[2px]"
         style={{ background: `rgba(${config.accentRgb}, 0.15)` }}

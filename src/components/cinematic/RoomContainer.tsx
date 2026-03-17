@@ -14,7 +14,7 @@ export default function RoomContainer({ index, children }: RoomContainerProps) {
   return (
     <div
       data-room={index}
-      className="room-container"
+      className="room-container wall-texture"
       style={{
         background: config.bg,
         // @ts-ignore — CSS custom properties
@@ -23,11 +23,31 @@ export default function RoomContainer({ index, children }: RoomContainerProps) {
         '--room-glow': config.glowColor,
       } as React.CSSProperties}
     >
-      {/* Room number watermark */}
+      {/* Room spotlight — centered radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at 50% 45%, rgba(${config.accentRgb}, 0.06) 0%, rgba(${config.accentRgb}, 0.02) 30%, transparent 70%)`,
+          width: '120%',
+          height: '120%',
+          left: '-10%',
+          top: '-10%',
+        }}
+      />
+
+      {/* Vignette — darken edges for focus */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)',
+        }}
+      />
+
+      {/* Room number watermark — large decorative */}
       <div className="absolute top-8 left-10 pointer-events-none select-none">
         <span
-          className="font-display text-[120px] leading-none font-bold"
-          style={{ color: `rgba(${config.accentRgb}, 0.03)` }}
+          className="font-display text-[200px] leading-none font-bold"
+          style={{ color: `rgba(${config.accentRgb}, 0.06)` }}
         >
           {config.number}
         </span>

@@ -8,21 +8,28 @@ interface TypewriterTextProps {
   text: string;
   speed?: number;
   className?: string;
+  autoStart?: boolean; // Start typing on mount instead of scroll
 }
 
 export default function TypewriterText({
   text,
   speed = 30,
   className = '',
+  autoStart = false,
 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState('');
-  const [started, setStarted] = useState(false);
+  const [started, setStarted] = useState(autoStart);
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (reducedMotion || !ref.current) {
       setDisplayedText(text);
+      return;
+    }
+
+    if (autoStart) {
+      setStarted(true);
       return;
     }
 
@@ -34,7 +41,7 @@ export default function TypewriterText({
     });
 
     return () => trigger.kill();
-  }, [reducedMotion, text]);
+  }, [reducedMotion, text, autoStart]);
 
   useEffect(() => {
     if (!started || reducedMotion) return;

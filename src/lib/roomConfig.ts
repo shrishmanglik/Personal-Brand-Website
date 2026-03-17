@@ -39,22 +39,24 @@ export const ROOM_CONFIG: RoomConfig[] = [
     glowColor: 'rgba(160,160,176,0.05)',
   },
   {
+    // Room 04: TELUS — warm gold (was teal)
     id: 'telus',
     name: 'The TELUS Health Chamber',
     number: '04',
-    accent: '#4ECDC4',
-    accentRgb: '78,205,196',
-    bg: 'radial-gradient(ellipse at 50% 40%, #0d1a19 0%, #0A0A0A 70%)',
-    glowColor: 'rgba(78,205,196,0.05)',
+    accent: '#C9A84C',
+    accentRgb: '201,168,76',
+    bg: 'radial-gradient(ellipse at 50% 40%, #0d0b08 0%, #0A0A0A 70%)',
+    glowColor: 'rgba(201,168,76,0.06)',
   },
   {
+    // Room 05: Innovation Lab — blue-black shift
     id: 'innovation',
     name: 'The Innovation Lab',
     number: '05',
-    accent: '#64C8FF',
-    accentRgb: '100,200,255',
-    bg: 'radial-gradient(ellipse at 50% 40%, #0d1520 0%, #0A0A0A 70%)',
-    glowColor: 'rgba(100,200,255,0.05)',
+    accent: '#4FB8FF',
+    accentRgb: '79,184,255',
+    bg: 'radial-gradient(ellipse at 50% 40%, #08090d 0%, #060608 70%)',
+    glowColor: 'rgba(79,184,255,0.05)',
   },
   {
     id: 'projects',
