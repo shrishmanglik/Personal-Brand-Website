@@ -1,6 +1,8 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useCinematicScroll } from '@/hooks/useCinematicScroll';
+import { useGalleryStore } from '@/store/galleryStore';
 import RoomContainer from './RoomContainer';
 import RoomContent01 from './RoomContent01_Foyer';
 import RoomContent02 from './RoomContent02_Origins';
@@ -12,6 +14,11 @@ import RoomContent07 from './RoomContent07_Workshop';
 import RoomContent08 from './RoomContent08_Exit';
 import ParticleCanvas from './ParticleCanvas';
 import AtmosphericOverlay from './AtmosphericOverlay';
+
+const FloatingScene = dynamic(
+  () => import('@/components/three/FloatingScene'),
+  { ssr: false }
+);
 
 const ROOMS = [
   RoomContent01,
@@ -26,11 +33,15 @@ const ROOMS = [
 
 export default function CinematicStage() {
   useCinematicScroll();
+  const scrollProgress = useGalleryStore((s) => s.scrollProgress);
 
   return (
     <>
       {/* Atmospheric particles behind everything */}
       <ParticleCanvas />
+
+      {/* 3D floating scene */}
+      <FloatingScene scrollProgress={scrollProgress} />
 
       {/* Fixed viewport — all rooms stack here */}
       <div className="fixed inset-0 z-10 overflow-hidden">
