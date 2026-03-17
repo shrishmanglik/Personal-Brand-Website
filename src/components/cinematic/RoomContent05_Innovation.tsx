@@ -20,7 +20,7 @@ export default function RoomContent05_Innovation() {
       <div
         className="absolute bottom-0 left-0 right-0 h-[200px] pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.3) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(5,8,15,0.4) 50%, rgba(15,12,8,0.3) 100%)',
         }}
       />
 
@@ -112,7 +112,7 @@ export default function RoomContent05_Innovation() {
         />
         <h2
           data-reveal-heading
-          className="font-display text-5xl md:text-7xl lg:text-8xl text-center text-white relative"
+          className="font-display text-5xl md:text-7xl lg:text-8xl text-center text-white relative neon-glow"
           style={{
             textShadow:
               '0 0 7px rgba(79,184,255,0.9), 0 0 20px rgba(79,184,255,0.7), 0 0 40px rgba(79,184,255,0.5), 0 0 80px rgba(79,184,255,0.3), 0 0 120px rgba(79,184,255,0.15), 0 0 200px rgba(79,184,255,0.08)',
@@ -208,6 +208,17 @@ export default function RoomContent05_Innovation() {
                 'linear-gradient(135deg, rgba(79,184,255,0.03) 0%, rgba(255,255,255,0.01) 50%, rgba(79,184,255,0.02) 100%)';
             }}
           >
+            {/* Glass reflection diagonal */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+              <div
+                className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%]"
+                style={{
+                  background:
+                    'linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.03) 48%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 52%, transparent 60%)',
+                }}
+              />
+            </div>
+
             {/* Top glow line */}
             <div
               className="absolute top-0 left-[10%] right-[10%] h-[1px] pointer-events-none"

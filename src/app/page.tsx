@@ -12,6 +12,11 @@ const CinematicStage = dynamic(
   { ssr: false, loading: () => null }
 );
 
+const ConversationManager = dynamic(
+  () => import('@/components/conversation/ConversationManager'),
+  { ssr: false, loading: () => null }
+);
+
 export default function Home() {
   return (
     <>
@@ -26,6 +31,7 @@ export default function Home() {
       <CinematicStage />
       <ProgressIndicator />
       <NavigationDots />
+      <ConversationManager />
     </>
   );
 }

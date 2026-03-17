@@ -96,7 +96,7 @@ export default function RoomContent08_Exit() {
         className="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.02) 30%, rgba(201,168,76,0.06) 60%, rgba(245,240,232,0.04) 85%, rgba(201,168,76,0.08) 100%)',
+            'linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.02) 30%, rgba(201,168,76,0.06) 60%, rgba(245,240,232,0.06) 85%, rgba(255,248,230,0.1) 100%)',
         }}
       />
 
@@ -129,11 +129,9 @@ export default function RoomContent08_Exit() {
       <div className="sparkle-container sparkle-field relative z-10 mb-2">
         <h2
           data-reveal-heading
-          className="font-display text-gradient-aurora leading-[0.9]"
+          className="font-display gold-shimmer leading-[0.9]"
           style={{
             fontSize: 'clamp(3.5rem, 12vw, 9rem)',
-            textShadow:
-              '0 0 80px rgba(201,168,76,0.15), 0 0 160px rgba(167,139,250,0.08)',
           }}
         >
           {contact.cta}
@@ -183,7 +181,8 @@ export default function RoomContent08_Exit() {
             href={card.href}
             target={card.external ? '_blank' : undefined}
             rel={card.external ? 'noopener noreferrer' : undefined}
-            className="glass group block px-6 py-6 text-left transition-all duration-500 relative overflow-hidden"
+            className="glass group block px-6 py-6 text-left transition-all duration-500 relative overflow-hidden border-l-[3px]"
+            style={{ borderLeftColor: card.accentBorder }}
             whileHover={{
               y: -6,
               boxShadow: `0 0 40px ${card.glowColor}, 0 12px 40px rgba(0,0,0,0.4)`,

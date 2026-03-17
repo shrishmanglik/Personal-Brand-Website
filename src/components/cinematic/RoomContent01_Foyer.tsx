@@ -289,56 +289,26 @@ export default function RoomContent01_Foyer() {
       <p
         data-reveal
         className="font-body text-sm md:text-base text-white/50 tracking-[0.4em] uppercase max-w-2xl leading-relaxed"
+        style={{ fontVariant: 'small-caps' }}
       >
         {title}
       </p>
 
-      {/* ── Location + Status glass card ── */}
-      <div data-reveal className="mt-14">
-        <div className="glass-gold gradient-border px-10 py-5 flex items-center gap-8">
-          <div className="text-right">
-            <p className="font-display text-[9px] tracking-[4px] uppercase text-white/30 mb-0.5">
-              Based in
-            </p>
-            <p className="font-display text-[10px] tracking-[3px] uppercase text-white/50">
-              {location}
-            </p>
-          </div>
+      {/* ── Location & availability — quiet museum placard text ── */}
+      <div data-reveal className="mt-6 flex flex-col items-center gap-2">
+        <p className="font-body text-[9px] tracking-[3px] uppercase text-white/20">
+          {location} · {availability}
+        </p>
+        <div className="flex items-center gap-2 mt-1">
           <div
-            className="w-[1px] h-8 opacity-30"
+            className="breathing-dot w-1.5 h-1.5 rounded-full bg-emerald-400/70"
             style={{
-              background:
-                'linear-gradient(to bottom, transparent, rgba(201,168,76,0.5), transparent)',
+              boxShadow: '0 0 6px rgba(52,211,153,0.4)',
             }}
           />
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div
-                className="breathing-dot w-2.5 h-2.5 rounded-full bg-emerald-400"
-                style={{
-                  boxShadow:
-                    '0 0 10px rgba(52,211,153,0.6), 0 0 30px rgba(52,211,153,0.2)',
-                }}
-              />
-              {/* Outer ring pulse */}
-              <div
-                className="absolute inset-0 rounded-full border border-emerald-400/30 breathing-dot"
-                style={{
-                  animationDelay: '0.3s',
-                  transform: 'scale(1.8)',
-                  transformOrigin: 'center',
-                }}
-              />
-            </div>
-            <div>
-              <p className="font-display text-[9px] tracking-[4px] uppercase text-white/30 mb-0.5">
-                Status
-              </p>
-              <p className="font-display text-[10px] tracking-[3px] uppercase text-emerald-400/70">
-                {availability}
-              </p>
-            </div>
-          </div>
+          <p className="font-display text-[8px] tracking-[4px] uppercase text-emerald-400/40">
+            Available
+          </p>
         </div>
       </div>
 
@@ -368,8 +338,8 @@ export default function RoomContent01_Foyer() {
           />
         </div>
         {/* Explore label */}
-        <p className="font-body text-[8px] tracking-[6px] uppercase text-gallery-gold/50 mt-6">
-          Explore
+        <p className="font-body text-[8px] tracking-[6px] uppercase text-gallery-gold/50 mt-6 text-breathe">
+          Scroll to Explore
         </p>
         {/* Animated drop line */}
         <div className="w-[1px] h-12 bg-gradient-to-b from-gallery-gold/30 to-transparent animate-pulse-down" />
