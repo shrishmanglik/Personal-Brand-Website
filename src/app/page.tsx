@@ -6,15 +6,7 @@ import dynamic from 'next/dynamic';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
 import NavigationDots from '@/components/ui/NavigationDots';
 import ProgressIndicator from '@/components/ui/ProgressIndicator';
-import Room01_Entrance from '@/components/rooms/Room01_Entrance';
-import Room02_Origins from '@/components/rooms/Room02_Origins';
-import Room03_Enterprise from '@/components/rooms/Room03_Enterprise';
-import Room04_TelusHealth from '@/components/rooms/Room04_TelusHealth';
-import Room05_MDSStudio from '@/components/rooms/Room05_MDSStudio';
-import Room06_ProjectVault from '@/components/rooms/Room06_ProjectVault';
-import Room07_Capabilities from '@/components/rooms/Room07_Capabilities';
-import Room08_Exit from '@/components/rooms/Room08_Exit';
-import RoomTransition from '@/components/ui/RoomTransition';
+import VignetteOverlay from '@/components/gallery/VignetteOverlay';
 
 const GalleryCanvas = dynamic(
   () => import('@/components/gallery/GalleryCanvas'),
@@ -38,38 +30,72 @@ export default function Home() {
   return (
     <>
       <a
-        href="#room-1"
+        href="#scroll-driver"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-gallery-gold focus:text-gallery-black focus:px-4 focus:py-2"
       >
         Skip to content
       </a>
 
+      {/* Fixed viewport — 3D canvas fills the screen */}
       {showCanvas && (
-        <Suspense fallback={null}>
-          <GalleryCanvas />
-        </Suspense>
+        <div className="fixed inset-0 z-0">
+          <Suspense fallback={
+            <div className="w-full h-full bg-gallery-black flex items-center justify-center">
+              <p className="font-display text-gallery-gold/50 text-sm tracking-[6px] uppercase animate-pulse">
+                Entering Gallery...
+              </p>
+            </div>
+          }>
+            <GalleryCanvas />
+          </Suspense>
+        </div>
       )}
 
+      {/* Mobile fallback */}
+      {!showCanvas && (
+        <div className="min-h-screen bg-gallery-black flex items-center justify-center px-6">
+          <div className="text-center max-w-lg">
+            <h1 className="font-display text-4xl text-gallery-gold mb-4">
+              SHRISH MANGLIK
+            </h1>
+            <p className="font-body text-sm text-white/50 mb-2">
+              AI Systems Architect & Implementation Strategist
+            </p>
+            <p className="font-body text-xs text-white/30 mb-8">
+              This experience is best viewed on desktop
+            </p>
+            <div className="space-y-3 text-left">
+              <a href="mailto:shrishmanglik@gmail.com" className="block font-body text-sm text-white/60 hover:text-gallery-gold transition-colors">
+                shrishmanglik@gmail.com
+              </a>
+              <a href="https://linkedin.com/in/shrishmanglik" target="_blank" rel="noopener noreferrer" className="block font-body text-sm text-white/60 hover:text-gallery-gold transition-colors">
+                LinkedIn: shrishmanglik
+              </a>
+              <a href="https://milliondollarstudio.ai" target="_blank" rel="noopener noreferrer" className="block font-body text-sm text-white/60 hover:text-gallery-gold transition-colors">
+                milliondollarstudio.ai
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Vignette overlay for corridor transitions */}
+      <VignetteOverlay />
+
+      {/* HUD elements */}
       <ProgressIndicator />
       <NavigationDots />
 
-      <div id="gallery-container" className="relative z-10">
-        <Room01_Entrance />
-        <RoomTransition />
-        <Room02_Origins />
-        <RoomTransition />
-        <Room03_Enterprise />
-        <RoomTransition />
-        <Room04_TelusHealth />
-        <RoomTransition />
-        <Room05_MDSStudio />
-        <RoomTransition />
-        <Room06_ProjectVault />
-        <RoomTransition />
-        <Room07_Capabilities />
-        <RoomTransition />
-        <Room08_Exit />
-      </div>
+      {/* Invisible scroll driver — this is what the user actually scrolls */}
+      <div
+        id="scroll-driver"
+        style={{
+          height: '800vh',
+          width: '100%',
+          position: 'relative',
+          zIndex: -1,
+        }}
+      />
     </>
   );
 }

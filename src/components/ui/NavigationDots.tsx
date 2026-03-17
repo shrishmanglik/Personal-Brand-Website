@@ -3,15 +3,21 @@
 import React from 'react';
 import { useGalleryStore } from '@/store/galleryStore';
 import { SITE_CONTENT } from '@/data/content';
+import { ROOM_SCROLL_POSITIONS } from '@/hooks/useScrollProgress';
 
 export default function NavigationDots() {
   const activeRoom = useGalleryStore((s) => s.activeRoom);
 
   const handleClick = (index: number) => {
-    const el = document.getElementById(SITE_CONTENT.rooms[index].id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Calculate the scroll position for the target room
+    const scrollDriver = document.getElementById('scroll-driver');
+    if (!scrollDriver) return;
+
+    const targetProgress = ROOM_SCROLL_POSITIONS[index];
+    const maxScroll = scrollDriver.scrollHeight - window.innerHeight;
+    const targetScroll = targetProgress * maxScroll;
+
+    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
   };
 
   return (
