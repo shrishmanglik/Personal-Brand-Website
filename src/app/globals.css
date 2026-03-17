@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gallery base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  cursor: crosshair;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4b65e;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: white;
+}
+
+/* Spotlight radial gradient utility */
+.spotlight {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(201, 168, 76, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+.spotlight-strong {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(201, 168, 76, 0.25) 0%,
+    transparent 60%
+  );
+}
+
+/* Gallery link styles */
+a {
+  cursor: pointer;
+}
+
+/* Pulsing scroll indicator */
+@keyframes pulse-down {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+}
+
+.animate-pulse-down {
+  animation: pulse-down 2s ease-in-out infinite;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Glass display case effect */
+.glass-case {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.glass-case::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Neon glow text effect */
+.neon-glow {
+  text-shadow:
+    0 0 10px rgba(100, 200, 255, 0.5),
+    0 0 20px rgba(100, 200, 255, 0.3),
+    0 0 40px rgba(100, 200, 255, 0.2);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
