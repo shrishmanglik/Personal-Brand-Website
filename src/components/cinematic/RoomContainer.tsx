@@ -44,20 +44,26 @@ export default function RoomContainer({ index, children }: RoomContainerProps) {
       />
 
       {/* Room number watermark — large decorative */}
-      <div className="absolute top-8 left-10 pointer-events-none select-none">
+      <div className="absolute top-6 left-8 md:top-8 md:left-10 pointer-events-none select-none">
         <span
-          className="font-display text-[200px] leading-none font-bold"
-          style={{ color: `rgba(${config.accentRgb}, 0.06)` }}
+          className="room-watermark font-display leading-none font-bold"
+          style={{
+            color: `rgba(${config.accentRgb}, 0.06)`,
+            fontSize: 'clamp(80px, 14vw, 200px)',
+          }}
         >
           {config.number}
         </span>
       </div>
 
       {/* Room name label */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none select-none">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 pointer-events-none select-none">
         <span
-          className="font-display text-[10px] tracking-[6px] uppercase"
-          style={{ color: `rgba(${config.accentRgb}, 0.25)` }}
+          className="room-name-label font-display tracking-[6px] uppercase whitespace-nowrap"
+          style={{
+            color: `rgba(${config.accentRgb}, 0.25)`,
+            fontSize: 'clamp(8px, 1vw, 10px)',
+          }}
         >
           {config.name}
         </span>
@@ -65,14 +71,14 @@ export default function RoomContainer({ index, children }: RoomContainerProps) {
 
       {/* Accent glow at top */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] max-w-[90vw] h-[300px] pointer-events-none"
         style={{
           background: `radial-gradient(ellipse at center top, rgba(${config.accentRgb}, 0.08) 0%, transparent 70%)`,
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-8">
+      {/* Content — full-width safe padding for mobile */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-6 md:px-8">
         {children}
       </div>
     </div>

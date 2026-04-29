@@ -21,6 +21,16 @@ const CinematicStage = dynamic(
   }
 );
 
+const ConversationManager = dynamic(
+  () => import('@/components/conversation/ConversationManager'),
+  { ssr: false }
+);
+
+const AmbientAudio = dynamic(
+  () => import('@/components/cinematic/AmbientAudio'),
+  { ssr: false }
+);
+
 export default function Home() {
   return (
     <>
@@ -34,6 +44,8 @@ export default function Home() {
       <CinematicStage />
       <ProgressIndicator />
       <NavigationDots />
+      <AmbientAudio />
+      <ConversationManager />
     </>
   );
 }

@@ -786,6 +786,246 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
   },
 
   // ============================================================
+  // EXPANDED KNOWLEDGE — TECHNICAL DEEP DIVES
+  // ============================================================
+  {
+    id: 'tech-rag',
+    category: 'skills',
+    keywords: ['rag', 'retrieval', 'augmented', 'vector', 'embedding', 'pinecone', 'chroma'],
+    phrases: ['what is rag', 'retrieval augmented generation', 'vector search', 'embeddings'],
+    response:
+      "RAG done right means treating the retrieval layer like a deterministic database query, not a vibes-based similarity search. I use vector embeddings only when keyword search fails — and even then, hybrid search (BM25 + dense vectors) beats pure semantic in 80% of real-world cases. The MIDAS framework treats RAG as a tool, not a religion.",
+    navigateTo: 6,
+    responseStyle: 'frame',
+  },
+  {
+    id: 'tech-multi-agent',
+    category: 'skills',
+    keywords: ['multi', 'agent', 'orchestration', 'crew', 'autogen', 'swarm', 'hierarchical'],
+    phrases: ['multi-agent', 'agent orchestration', 'how do agents work', 'agentic'],
+    response:
+      "Multi-agent systems are virtual companies. MIDAS coordinates specialized roles — PM, architect, developers, QA, DevOps — under a hierarchical orchestrator. The trick isn't building agents, it's giving them deterministic guardrails so they don't loop forever or hallucinate work. Most multi-agent demos fail because they trust the LLM to coordinate. MIDAS doesn't.",
+    navigateTo: 4,
+    responseStyle: 'frame',
+  },
+  {
+    id: 'tech-mcp',
+    category: 'skills',
+    keywords: ['mcp', 'model', 'context', 'protocol', 'tool', 'integration'],
+    phrases: ['model context protocol', 'mcp servers', 'what is mcp'],
+    response:
+      "Model Context Protocol — Anthropic's open standard for connecting AI to tools and data. I use it to wire Claude into actual systems (databases, APIs, file systems) instead of pretending an LLM can solve problems by talking. MCP is how you turn a chatbot into an operator.",
+    responseStyle: 'placard',
+  },
+  {
+    id: 'tech-stack-choice',
+    category: 'skills',
+    keywords: ['stack', 'choice', 'why', 'choose', 'pick', 'tech', 'framework'],
+    phrases: ['why nextjs', 'why fastapi', 'why supabase', 'why this stack', 'tech choices'],
+    response:
+      "Next.js — static export means $0/month hosting on Vercel and best-in-class DX. FastAPI — async, auto-OpenAPI docs, Python ecosystem for ML/scientific computing (Swiss Ephemeris, FSRS-5). Supabase — Postgres + auth + storage + realtime in one bundle, owned data, no vendor lock-in. The stack is boring on purpose. Boring ships.",
+    responseStyle: 'frame',
+  },
+  {
+    id: 'tech-claude-code',
+    category: 'skills',
+    keywords: ['claude', 'code', 'cli', 'agentic', 'coding', 'cursor', 'copilot'],
+    phrases: ['claude code', 'use claude code', 'do you use ai to code', 'cursor vs claude'],
+    response:
+      "Claude Code is the spine of my dev workflow. I architect, it executes; I review, it iterates. The MIDAS framework is essentially a CLAUDE.md library plus skills plus hooks. The leverage is real — I ship single-founder what used to take a 5-person team. This website was built in one Claude Code session.",
+    responseStyle: 'frame',
+  },
+
+  // ============================================================
+  // EXPANDED KNOWLEDGE — DEEPER PROJECT DETAILS
+  // ============================================================
+  {
+    id: 'project-astroai-cost',
+    category: 'projects',
+    keywords: ['astroai', 'cost', 'cheap', 'tier', 'deterministic', 'pricing'],
+    phrases: ['how does astroai cost', 'astroai pricing', 'astroai cheap'],
+    response:
+      "AstroAI's cost model is the deterministic-first thesis in production. Tier 1 (Swiss Ephemeris astronomical math): $0.00. Tier 2 (classical yoga/dosha rule engine): ~$0.001. Tier 3 (AI narrative interpretation, only when needed): ~$0.005. Net result: chart generation costs less than a tenth of a penny while competitors burn $0.10+ per chart on raw API calls.",
+    navigateTo: 5,
+    responseStyle: 'frame',
+  },
+  {
+    id: 'project-nestiq-scope',
+    category: 'projects',
+    keywords: ['nestiq', 'province', 'cad', 'usd', 'jurisdiction', 'compliance'],
+    phrases: ['nestiq provinces', 'nestiq compliance', 'rental compliance'],
+    response:
+      "NestIQ ships with 13 jurisdiction handlers — every Canadian province plus territory-specific rules. Bills in CAD (most competitors are USD-only and ignore provincial RTA differences). Modules: rent benchmarking, cash flow modeling, maintenance forecasting, tenant screening, tax optimization, regulatory compliance. The differentiator isn't AI — it's domain depth.",
+    responseStyle: 'frame',
+  },
+  {
+    id: 'project-atlas-tests',
+    category: 'projects',
+    keywords: ['atlas', 'test', 'wealthsimple', 'phase', 'submission', 'builder'],
+    phrases: ['atlas tests', 'wealthsimple builder', 'atlas phase'],
+    response:
+      "ATLAS Phase 1: 44/44 tests passing on the cross-border tax engine. Submitted to the Wealthsimple AI Builder Program. The complexity is the rule engine — DTAA treaty interpretation, foreign tax credit claims, tax residency dual-status. Same multi-jurisdiction pattern as NestIQ's provinces and AstroAI's classical yogas. Patterns repeat; that's why MIDAS compounds.",
+    responseStyle: 'frame',
+  },
+  {
+    id: 'project-chemai-fsrs',
+    category: 'projects',
+    keywords: ['fsrs', 'spaced', 'repetition', 'memory', 'anki', 'algorithm'],
+    phrases: ['fsrs algorithm', 'spaced repetition', 'how chemai memorize'],
+    response:
+      "ChemAI uses FSRS-5 — the modern spaced repetition algorithm that beats Anki's SM-2 by 20-30% in retention efficiency. Pure deterministic math: difficulty + stability + retrievability. Zero AI involved in the scheduling. AI only kicks in for the question generation and explanations — and even those follow blueprint-accurate exam patterns.",
+    responseStyle: 'placard',
+  },
+
+  // ============================================================
+  // EXPANDED KNOWLEDGE — ABOUT / SOFT QUESTIONS
+  // ============================================================
+  {
+    id: 'about-day-life',
+    category: 'about',
+    keywords: ['day', 'life', 'morning', 'routine', 'schedule', 'typical'],
+    phrases: ['typical day', 'day in the life', 'what does your day look like', 'your routine'],
+    response:
+      "Mornings: deep work on MDS products — code, prompt engineering, system design. Days: TELUS Health enterprise benefits work — feed checks, escalations, training. Evenings: client calls, content production runs, MIDAS framework iterations. The two roles compound rather than compete. Enterprise grounds the strategy; the studio sharpens the execution.",
+    responseStyle: 'frame',
+  },
+  {
+    id: 'about-india-canada',
+    category: 'about',
+    keywords: ['immigration', 'newcomer', 'move', 'transition', 'cross-border'],
+    phrases: ['india to canada', 'immigrant story', 'newcomer to canada', 'why canada'],
+    response:
+      "Moved from Ahmedabad to Toronto in 2019 for fintech studies at Seneca. The transition is partly why ATLAS exists — every Indian newcomer hits the same cross-border tax cliff in their first year. Building tools for the journey I lived. The India-Canada bridge runs through everything: AstroAI (Vedic systems), ChemAI (Indian student exams), ATLAS (cross-border tax).",
+    navigateTo: 1,
+    responseStyle: 'frame',
+  },
+  {
+    id: 'about-future',
+    category: 'about',
+    keywords: ['future', 'next', 'plan', 'goal', 'vision', 'roadmap', '5 years'],
+    phrases: ['what is next', 'future plans', 'where do you see yourself', 'long term goal'],
+    response:
+      "Short term: ship NestIQ and ATLAS to revenue, grow MDS to a sustainable consulting practice, land a senior AI architect role that pairs well with the studio. Medium term: scale MIDAS into a productized framework other builders can license. Long term: be the person enterprise teams call when they need AI that actually works in production.",
+    navigateTo: 4,
+    responseStyle: 'frame',
+  },
+  {
+    id: 'about-ideal-client',
+    category: 'mds',
+    keywords: ['ideal', 'client', 'fit', 'perfect', 'who', 'work', 'with'],
+    phrases: ['ideal client', 'who do you work with', 'who hires you', 'best fit'],
+    response:
+      "Best fit: founders or operators with a clear domain problem and budget for production-grade systems — not 'let's add AI to look modern.' Sweet spot ranges: $5K workflow automations for SMB operators, $50-200K custom AI systems for enterprise teams that have already burned a budget on an AI demo that didn't ship.",
+    navigateTo: 7,
+    responseStyle: 'frame',
+  },
+
+  // ============================================================
+  // EXPANDED KNOWLEDGE — META / EASTER EGGS
+  // ============================================================
+  {
+    id: 'meta-rooms',
+    category: 'meta',
+    keywords: ['rooms', 'eight', '8', 'gallery', 'walkthrough', 'metaphor'],
+    phrases: ['why rooms', 'why a gallery', 'why 8 rooms', 'gallery metaphor'],
+    response:
+      "Eight rooms because portfolios should feel like exhibitions, not resumes. The whiskey-warehouse-converted-to-gallery aesthetic mirrors my career — industrial roots (operations, banking) refined into curated craft (AI architecture). Each room is a curated piece, not a bullet point.",
+    responseStyle: 'quote',
+  },
+  {
+    id: 'meta-easter-egg',
+    category: 'meta',
+    keywords: ['secret', 'hidden', 'easter', 'egg', 'fun', 'surprise'],
+    phrases: ['easter egg', 'hidden feature', 'secret feature'],
+    response:
+      "Press / anywhere on the page to summon this conversation. Scroll all the way to room 8 and click 'Back to entrance' for the loop. The dolly-zoom flavor varies per room — room 3 slides left for the timeline walk, room 6 slides right for the salon flow. The whole experience is hand-crafted; nothing is generated.",
+    responseStyle: 'placard',
+  },
+  {
+    id: 'meta-ai-confused',
+    category: 'meta',
+    keywords: ['confused', 'wrong', 'incorrect', 'mistake', 'understand'],
+    phrases: ['you misunderstood', 'wrong answer', 'that wasn\'t what i asked', 'try again'],
+    response:
+      "Fair — this is keyword matching, not real comprehension. Try rephrasing with specific terms: 'TELUS Health', 'AstroAI', 'pricing', 'contact', 'philosophy'. Or scroll the gallery — every answer lives in a room.",
+    responseStyle: 'placard',
+  },
+  {
+    id: 'meta-keyboard',
+    category: 'meta',
+    keywords: ['keyboard', 'shortcut', 'key', 'press', 'navigate'],
+    phrases: ['keyboard shortcuts', 'how to navigate', 'controls'],
+    response:
+      "Press / to open this conversation anywhere. Esc to close it. Tab to focus the input. Click the right-edge dots to jump rooms. Scroll naturally to walk through the gallery — the camera handles the choreography.",
+    responseStyle: 'placard',
+  },
+
+  // ============================================================
+  // EXPANDED KNOWLEDGE — DIRECT YES/NO QUESTIONS
+  // ============================================================
+  {
+    id: 'yn-availability',
+    category: 'about',
+    keywords: ['available', 'free', 'busy', 'capacity', 'taking', 'projects'],
+    phrases: ['are you available', 'taking projects', 'are you free', 'do you have capacity'],
+    response:
+      "Yes — taking new MDS engagements with kickoff in 2-4 weeks depending on scope. Also actively interviewing for senior AI architect roles ($150K+ CAD remote). Email shrishmanglik@gmail.com with what you're building.",
+    navigateTo: 7,
+    responseStyle: 'placard',
+  },
+  {
+    id: 'yn-fulltime',
+    category: 'about',
+    keywords: ['full', 'time', 'fulltime', 'permanent', 'job', 'employment'],
+    phrases: ['full time role', 'are you looking for full time', 'permanent role', 'fulltime job'],
+    response:
+      "Yes — open to full-time AI Systems Architect or AI Implementation Lead roles. Targeting $150K+ CAD, remote. The MDS work scales with or without a day job — what changes is the depth of involvement, not the existence of the studio.",
+    navigateTo: 7,
+    responseStyle: 'placard',
+  },
+  {
+    id: 'yn-references',
+    category: 'about',
+    keywords: ['reference', 'recommendation', 'testimonial', 'endorsement'],
+    phrases: ['can you provide references', 'references available', 'testimonials'],
+    response:
+      "Yes — references available on request. TELUS Health team leads, training mentees (Jeel, Marci), and prior MDS clients. Email me to request specifics for the role you're hiring for.",
+    navigateTo: 7,
+    responseStyle: 'placard',
+  },
+
+  // ============================================================
+  // EXPANDED KNOWLEDGE — INDUSTRY TAKES
+  // ============================================================
+  {
+    id: 'philosophy-vibe-coding',
+    category: 'philosophy',
+    keywords: ['vibe', 'coding', 'prompt', 'vibes', 'ship'],
+    phrases: ['vibe coding', 'is ai coding good', 'prompt engineering vibes'],
+    response:
+      "Vibe-coding ships prototypes, not products. The gap between 'works in a demo' and 'works at 3 AM under load with weird inputs' is where production engineering lives. AI accelerates the first 80%; the last 20% is where my enterprise discipline pays for itself. Both halves matter.",
+    responseStyle: 'quote',
+  },
+  {
+    id: 'philosophy-determinism',
+    category: 'philosophy',
+    keywords: ['why', 'deterministic', 'computer', 'compute', 'generate', 'rule', 'engine'],
+    phrases: ['why deterministic', 'rule engine vs ai', 'why not just use ai'],
+    response:
+      "Three reasons. (1) Cost — rules cost $0.00, LLM calls cost real money at scale. (2) Reliability — the same input gives the same output, every time, forever. (3) Auditability — when a benefits portfolio is audited, you need to point at deterministic logic, not 'the model said so.' AI is a chainsaw; most jobs need a scalpel.",
+    responseStyle: 'frame',
+  },
+  {
+    id: 'philosophy-shipping',
+    category: 'philosophy',
+    keywords: ['ship', 'shipping', 'release', 'launch', 'mvp', 'fast'],
+    phrases: ['how do you ship fast', 'shipping philosophy', 'shipping mvp'],
+    response:
+      "Ship the smallest deterministic core first; layer AI on only when the core works. MIDAS forces this — the framework has a 5-phase pipeline that can't skip phases. Phase 1 always works without AI. AI is added in phase 4 only if it earns its place. By then, the product is already valuable.",
+    responseStyle: 'quote',
+  },
+
+  // ============================================================
   // NAVIGATION SHORTCUTS (8 entries)
   // ============================================================
   {

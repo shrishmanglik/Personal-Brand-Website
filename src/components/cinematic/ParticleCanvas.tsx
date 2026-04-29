@@ -1,6 +1,8 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import { useGalleryStore } from '@/store/galleryStore';
+import { ROOM_CONFIG } from '@/lib/roomConfig';
 
 interface Particle {
   x: number;
@@ -12,33 +14,67 @@ interface Particle {
   opacityDir: number;
 }
 
-const PARTICLE_COUNT = 60;
-
 export default function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Subscribe via ref so we don't re-run the heavy effect when room changes
+  const accentRef = useRef<[number, number, number]>([201, 168, 76]);
+
+  // Listen to room changes and update the rgb tuple imperatively
+  useEffect(() => {
+    return useGalleryStore.subscribe((state) => {
+      const cfg = ROOM_CONFIG[state.activeRoom];
+      if (!cfg) return;
+      const parts = cfg.accentRgb.split(',').map((s) => parseInt(s.trim(), 10));
+      if (parts.length === 3 && parts.every((n) => !isNaN(n))) {
+        accentRef.current = [parts[0], parts[1], parts[2]];
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const reduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
+    // Choose particle count based on viewport + DPR for perf
+    const isMobile = window.innerWidth < 768;
+    const isLowEnd =
+      // crude heuristic for low-end devices
+      (navigator as any).deviceMemory !== undefined
+        ? (navigator as any).deviceMemory <= 4
+        : isMobile;
+    const PARTICLE_COUNT = isLowEnd ? 24 : isMobile ? 36 : 60;
+
+    let animId = 0;
     let particles: Particle[] = [];
+    let lastFrame = 0;
+    const TARGET_FRAME_MS = isMobile ? 1000 / 30 : 1000 / 60; // throttle on mobile
+    let dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener('resize', resize);
 
-    // Initialize particles
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
         vx: (Math.random() - 0.5) * 0.15,
         vy: (Math.random() - 0.5) * 0.1 - 0.05,
         size: Math.random() * 1.5 + 0.5,
@@ -47,44 +83,50 @@ export default function ParticleCanvas() {
       });
     }
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const draw = (now: number) => {
+      if (now - lastFrame < TARGET_FRAME_MS) {
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = now;
+
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      const [r, g, b] = accentRef.current;
 
       for (const p of particles) {
-        // Update position
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
 
-        // Pulse opacity
         p.opacity += p.opacityDir;
         if (p.opacity > 0.35 || p.opacity < 0.02) {
           p.opacityDir *= -1;
         }
 
-        // Draw
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201, 168, 76, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
         ctx.fill();
       }
 
       animId = requestAnimationFrame(draw);
     };
 
-    draw();
+    animId = requestAnimationFrame(draw);
 
-    // Pause when tab not visible
     const handleVisibility = () => {
       if (document.hidden) {
         cancelAnimationFrame(animId);
       } else {
-        draw();
+        lastFrame = 0;
+        animId = requestAnimationFrame(draw);
       }
     };
     document.addEventListener('visibilitychange', handleVisibility);
@@ -101,6 +143,7 @@ export default function ParticleCanvas() {
       ref={canvasRef}
       className="fixed inset-0 z-[5] pointer-events-none"
       style={{ opacity: 0.6 }}
+      aria-hidden="true"
     />
   );
 }
